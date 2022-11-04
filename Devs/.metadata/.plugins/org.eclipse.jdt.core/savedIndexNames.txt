@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+D:\kodlama.io.Devs\Devs\.metadata\.plugins\org.eclipse.jdt.core
