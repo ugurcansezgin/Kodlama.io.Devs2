@@ -26,7 +26,7 @@ public class LanguagesController {
     }
 
     @GetMapping("/getbyid")
-    public LanguageResponse getById(@RequestParam int id){
+    public LanguageResponse getById(@RequestParam Long id){
 
         return  languageService.getResponseById(id);
     }
@@ -37,13 +37,13 @@ public class LanguagesController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable Long id){
 
         languageService.delete(id);
     }
 
     @PutMapping("/update/{id}")
-    public void update(@RequestBody LanguageRequest languageRequest, @PathVariable int id) throws Exception {
+    public void update(@RequestBody LanguageRequest languageRequest, @PathVariable Long id) throws Exception {
         languageService.update(languageRequest,id);
     }
 }

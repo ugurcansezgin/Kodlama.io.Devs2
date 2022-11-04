@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class LanguageResponse {
 
-    private int id;
+    private Long id;
     private String name;
 }

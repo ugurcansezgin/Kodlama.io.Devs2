@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 
 @Service
@@ -36,18 +38,22 @@ public class LanguageManager implements LanguageService {
     }
 
     @Override
-    public LanguageResponse getResponseById(int id){
-        Language language = languageRepository.findById(id);
-        LanguageResponse languageResponse = new LanguageResponse();
-        languageResponse.setName(language.getName());
-        languageResponse.setId(language.getId());
-        return languageResponse;
+    public LanguageResponse getResponseById(Long id){
+        Optional<Language > language = languageRepository.findById(id);
+        if(language.isPresent() ){
+            LanguageResponse languageResponse = new LanguageResponse();
+            languageResponse.setName(language.get().getName());
+            languageResponse.setId(language.get().getId());
+            return languageResponse;
+        }
+        return null;
     }
 
     @Override
-    public Language getById(int id){
+    public Language getById(Long id){
+    Optional<Language> language = languageRepository.findById(id);
 
-        return languageRepository.findById(id);
+        return language.get();
     }
 
     @Override
@@ -59,17 +65,21 @@ public class LanguageManager implements LanguageService {
     }
 
     @Override
-    public void delete(int id){
+    public void delete(Long id){
 
         languageRepository.deleteById(id);
     }
 
     @Override
-    public void update(LanguageRequest languageRequest, int id) throws Exception {
+    public void update(LanguageRequest languageRequest, Long id) throws Exception {
         checkNameValid(languageRequest.getName());
-        Language language = languageRepository.findById(id);
-        language.setName(languageRequest.getName());
-        languageRepository.save(language);
+
+        Language language = getById(id);
+        if (Objects.nonNull(language)){
+            language.setName(languageRequest.getName());
+            languageRepository.save(language);
+        }
+
     }
 
     private void checkNameValid(String name) throws Exception {

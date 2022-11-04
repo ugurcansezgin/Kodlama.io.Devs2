@@ -29,12 +29,12 @@ public class TechnologiesController {
     }
 
     @PutMapping("/update/{id}")
-    public void update(@RequestBody TechnologyRequest technologyRequest, @PathVariable int id){
+    public void update(@RequestBody TechnologyRequest technologyRequest, @PathVariable Long id){
         technologyService.update(technologyRequest,id);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable int id){
+    public void delete(@PathVariable Long id){
         technologyService.delete(id);
     }
 }

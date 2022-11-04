@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TechnologyManager implements TechnologyService {
@@ -50,17 +51,17 @@ public class TechnologyManager implements TechnologyService {
     }
 
     @Override
-    public void update(TechnologyRequest technologyRequest, int id){
+    public void update(TechnologyRequest technologyRequest, Long id){
 
-        Technology updateTechnology = technologyRepository.findById(id);
+        Optional<Technology> updateTechnology = technologyRepository.findById(id);
         Language updateLanguageId = languageService.getById(technologyRequest.getLanguageId());
-        updateTechnology.setName(technologyRequest.getName());
-        updateTechnology.setLanguage(updateLanguageId);
-        technologyRepository.save(updateTechnology);
+        updateTechnology.get().setName(technologyRequest.getName());
+        updateTechnology.get().setLanguage(updateLanguageId);
+        technologyRepository.save(updateTechnology.get());
     }
 
     @Override
-    public void delete(int id){
+    public void delete(Long id){
         technologyRepository.deleteById(id);
     }
 }

@@ -9,9 +9,9 @@ import java.util.List;
 public interface LanguageService {
 
     List<LanguageResponse> getALL();
-    LanguageResponse getResponseById(int id);
-    Language getById(int id);
+    LanguageResponse getResponseById(Long id);
+    Language getById(Long id);
     void add(LanguageRequest languageRequest) throws Exception;
-    void delete(int id);
-    void update(LanguageRequest languageRequest, int id) throws Exception;
+    void delete(Long id);
+    void update(LanguageRequest languageRequest, Long id) throws Exception;
 }

@@ -7,9 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
+@Entity
 @Getter
 @Setter
-@Entity
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "technologies")
@@ -18,12 +19,11 @@ public class Technology {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Long id;
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "Language_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Language language;
 
 }

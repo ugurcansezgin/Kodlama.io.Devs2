@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TechnologyRequest {
 
-    private int LanguageId;
+    private Long LanguageId;
     private String name;
 }
